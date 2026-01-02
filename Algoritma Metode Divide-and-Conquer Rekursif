@@ -1,0 +1,20 @@
+function MaxMinDAC(input A[0..n-1] : array of integer, low, high, n : integer) -> (min, max)
+
+if low = high then
+    return (A[low], A[low])
+endif
+
+if high = low + 1 then
+    if A[low] < A[high] then
+        return (A[low], A[high])
+    else
+        return (A[high], A[low])
+    endif
+endif
+
+mid = (low + high) / 2
+
+(min1, max1) = MaxMinDAC(A, low, mid, n)
+(min2, max2) = MaxMinDAC(A, mid + 1, high, n)
+
+return (min(min1, min2), max(max1, max2))
